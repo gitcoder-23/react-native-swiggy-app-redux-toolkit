@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 const LoadingScreen = (props) => {
   const navigation = useNavigation();
   console.log('@@navigation--->', navigation);
-  console.log('load-props-->', props);
   // useEffect(() => {
   //     setTimeout(() => {
   //         navigation.replace("Order")
