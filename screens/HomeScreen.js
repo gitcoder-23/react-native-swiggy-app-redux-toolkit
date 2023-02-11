@@ -15,6 +15,7 @@ import QuickFood from '../components/QuickFood';
 import hotels from '../data/hotels';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItem from '../components/MenuItem';
+import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
   const hotelsData = hotels;
@@ -98,6 +99,7 @@ const HomeScreen = () => {
         {hotelsData.map((item, index) => (
           <MenuItem key={index} menuItem={item} />
         ))}
+        <LoadingScreen />
       </ScrollView>
     </SafeAreaView>
   );
