@@ -1,0 +1,48 @@
+// install by expo process
+needed--> npm install --global expo-cli
+// javascript
+1> expo init (app name)
+2> npx create-expo-app (app name)
+
+// Typescript
+1> expo init (app name) expo-template-blank-typescript
+a> expo init -t expo-template-blank-typescript
+
+2> npx create-expo-app (app name) --template expo-template-blank-typescript
+
+
+
+// Install by React-native cli
+// javascript
+1> npx react-native init AwesomeProject
+2> npx react-native init AwesomeProject --version X.XX.X
+3> npx react-native init ProjectName --template react-native-template-typescript
+
+
+// You Tut
+https://youtube.com/playlist?list=PLkqIFEskVoUI799aDljmpmeMI5hXzxaMK
+
+// For Designing
+Icons---> https://icons.expo.fyi/
+
+// For design css
+css ---> https://cssgradient.io/shades-of-red/
+
+// To solve "react-native-image-slider-box" by "deprecated-react-native-prop-types"
+Video- time --> Video-2 12:00 min time
+
+// Add these
+
+
+  get ColorPropType(): $FlowFixMe {
+    return require('deprecated-react-native-prop-types').ColorPropType;
+  },
+  get EdgeInsetsPropType(): $FlowFixMe {
+    return require('deprecated-react-native-prop-types').EdgeInsetsPropType;
+  },
+  get PointPropType(): $FlowFixMe {
+    return require('deprecated-react-native-prop-types').PointPropType;
+  },
+  get ViewPropTypes(): $FlowFixMe {
+    return require('deprecated-react-native-prop-types').ViewPropTypes;
+  },
