@@ -7,7 +7,7 @@ import {
   Pressable,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import CustomCarousel from '../components/CustomCarousel';
 import FoodTypes from '../components/FoodTypes';
@@ -15,9 +15,20 @@ import QuickFood from '../components/QuickFood';
 import hotels from '../data/hotels';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItem from '../components/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInCart } from './redux/CartReducer';
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
   const hotelsData = hotels;
+
+  const cart = useSelector((state) => state.cart.cart);
+
+  console.log('HomeScreen-cartData-->', cart);
+
+  useEffect(() => {
+    dispatch(getInCart());
+  }, [cart]);
   return (
     <SafeAreaView>
       <View style={styles.searchContainer}>

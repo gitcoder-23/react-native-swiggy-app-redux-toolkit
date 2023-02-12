@@ -13,11 +13,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import FoodItem from '../components/FoodItem';
+import { getInCart } from './redux/CartReducer';
 
 const MenuScreen = ({ route }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   // const route = useRoute();
   const [hotelMenus, setHotelMenus] = useState(route?.params?.menu);
   useEffect(() => {
@@ -30,7 +33,6 @@ const MenuScreen = ({ route }) => {
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-
   useEffect(() => {
     const fetchMenu = () => {
       setMenu(route?.params?.menu);
@@ -39,7 +41,20 @@ const MenuScreen = ({ route }) => {
     return () => {
       fetchMenu();
     };
-  }, [route?.params?.menu]);
+  }, []);
+
+  // Redux ops
+
+  const cart = useSelector((state) => state.cart.cart);
+  const total = cart
+    .map((item) => item.price * item.quantity)
+    .reduce((curr, prev) => curr + prev, 0);
+  console.log('total--->', total);
+  console.log('cartData-->', cart);
+
+  useEffect(() => {
+    dispatch(getInCart());
+  }, [cart]);
 
   // console.log('@@menuScreen-hotelMenus-->', hotelMenus);
 
@@ -312,6 +327,61 @@ const MenuScreen = ({ route }) => {
           </View>
         </View>
       </Modal>
+
+      {total === 0 ? null : (
+        <Pressable
+          style={{
+            backgroundColor: '#00A877',
+            width: '90%',
+            padding: 13,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginBottom: 30,
+            position: 'absolute',
+            borderRadius: 8,
+            left: 20,
+            bottom: 10,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <View>
+              <Text
+                style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}
+              >
+                {cart.length} items | {total}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: '500',
+                  marginTop: 3,
+                  color: 'white',
+                }}
+              >
+                Extra Charges may Apply!
+              </Text>
+            </View>
+
+            <Pressable
+              onPress={() =>
+                navigation.navigate('Cart', {
+                  name: route?.params?.name,
+                })
+              }
+            >
+              <Text style={{ fontSize: 18, fontWeight: '600', color: 'white' }}>
+                View Cart
+              </Text>
+            </Pressable>
+          </View>
+        </Pressable>
+      )}
 
       {/* Menu Close With Modal */}
     </>

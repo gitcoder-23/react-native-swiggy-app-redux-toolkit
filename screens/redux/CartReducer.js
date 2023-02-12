@@ -6,6 +6,10 @@ export const cartSlice = createSlice({
     cart: [],
   },
   reducers: {
+    getInCart: (state, action) => {
+      const itemInCart = state.cart;
+      console.log('itemInCart-->', itemInCart);
+    },
     addToCart: (state, action) => {
       const itemPresent = state.cart.find(
         (item) => item.id === action.payload.id
@@ -46,6 +50,7 @@ export const cartSlice = createSlice({
 });
 
 export const {
+  getInCart,
   addToCart,
   removeFromCart,
   incrementQuantity,

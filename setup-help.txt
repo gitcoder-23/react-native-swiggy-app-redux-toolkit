@@ -29,7 +29,7 @@ Icons---> https://icons.expo.fyi/
 css ---> https://cssgradient.io/shades-of-red/
 
 // To solve "react-native-image-slider-box" by "deprecated-react-native-prop-types"
-Video- time --> Video-2 12:00 min time
+Video- time --> Video-3 1: 08: 21 min time
 
 start Vid--> 3 tut
 
