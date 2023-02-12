@@ -13,14 +13,33 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import Modal from 'react-native-modal';
 import FoodItem from '../components/FoodItem';
 
 const MenuScreen = ({ route }) => {
   const navigation = useNavigation();
+  // const route = useRoute();
   const [hotelMenus, setHotelMenus] = useState(route?.params?.menu);
   useEffect(() => {
     setHotelMenus(route?.params?.menu);
   }, [hotelMenus]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  // const [menu, setMenu] = useState([]);
+  const [menu, setMenu] = useState(route?.params?.menu);
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  useEffect(() => {
+    const fetchMenu = () => {
+      setMenu(route?.params?.menu);
+    };
+
+    return () => {
+      fetchMenu();
+    };
+  }, [route?.params?.menu]);
 
   // console.log('@@menuScreen-hotelMenus-->', hotelMenus);
 
@@ -192,6 +211,109 @@ const MenuScreen = ({ route }) => {
             <FoodItem item={item} indesId={index} />
           ))}
       </ScrollView>
+      {/* Menu Start With Modal */}
+      <Pressable
+        onPress={toggleModal}
+        style={{
+          width: 60,
+          height: 60,
+          borderRadius: 40,
+          justifyContent: 'center',
+          backgroundColor: 'black',
+          marginLeft: 'auto',
+          position: 'absolute',
+          bottom: 35,
+          right: 25,
+          alignContent: 'center',
+        }}
+      >
+        <MaterialIcons
+          style={{ textAlign: 'center' }}
+          name="menu-book"
+          size={24}
+          color="white"
+        />
+        <Text
+          style={{ textAlign: 'center', color: 'white', fontWeight: '500' }}
+        >
+          MENU
+        </Text>
+      </Pressable>
+
+      <Modal isVisible={modalVisible} onBackdropPress={toggleModal}>
+        <View
+          style={{
+            height: 190,
+            width: 250,
+            backgroundColor: 'black',
+            position: 'absolute',
+            bottom: 35,
+            right: 10,
+            borderRadius: 7,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              // flex: 1,
+              padding: 10,
+            }}
+          >
+            <Text style={{ color: '#D0D0D0', fontWeight: '600', fontSize: 19 }}>
+              Item Type
+            </Text>
+            <AntDesign
+              name="close"
+              size={24}
+              color="white"
+              onPress={() => setModalVisible(false)}
+            />
+          </View>
+
+          <Text
+            style={{
+              borderColor: 'gray',
+              borderWidth: 0.6,
+              height: 1,
+              marginTop: 3,
+            }}
+          />
+          {menu.map((item, i) => (
+            <View
+              style={{
+                padding: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              key={i}
+            >
+              <Text
+                style={{ color: '#D0D0D0', fontWeight: '600', fontSize: 19 }}
+              >
+                {item.name}
+              </Text>
+              <Text
+                style={{ color: '#D0D0D0', fontWeight: '600', fontSize: 19 }}
+              >
+                {item.items.length}
+              </Text>
+            </View>
+          ))}
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <Image
+              style={{ width: 120, height: 70, resizeMode: 'contain' }}
+              source={{
+                uri: 'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_284/Logo_f5xzza',
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
+
+      {/* Menu Close With Modal */}
     </>
   );
 };
