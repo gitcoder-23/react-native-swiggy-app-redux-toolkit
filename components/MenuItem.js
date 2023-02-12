@@ -10,25 +10,29 @@ import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-// import { useNavigation } from '@react-navigation/native';
-const MenumenuItem = ({ menuItem }) => {
-  // const navigation = useNavigation();
+import { useNavigation } from '@react-navigation/native';
+const MenuItem = ({ menuItem }) => {
+  const navigation = useNavigation();
+
+  // console.log('@@MenuItem-navigation--->', navigation);
+  // console.log('@@MenuItem==>', menuItem.menu);
+
   return (
     <View style={{ margin: 10 }}>
       <Pressable
-        // onPress={() =>
-        //   navigation.navigate('Menu', {
-        //     id: menuItem.id,
-        //     name: menuItem.name,
-        //     image: menuItem.image,
-        //     rating: menuItem.rating,
-        //     time: menuItem.time,
-        //     adress: menuItem.adress,
-        //     cost_for_two: menuItem.cost_for_two,
-        //     cuisines: menuItem.cuisines,
-        //     menu: menuItem.menu,
-        //   })
-        // }
+        onPress={() =>
+          navigation.navigate('Menu', {
+            id: menuItem.id,
+            name: menuItem.name,
+            image: menuItem.image,
+            rating: menuItem.rating,
+            time: menuItem.time,
+            address: menuItem.address,
+            cost_for_two: menuItem.cost_for_two,
+            cuisines: menuItem.cuisines,
+            menu: menuItem.menu,
+          })
+        }
         style={{ flexDirection: 'row' }}
       >
         <View>
@@ -68,7 +72,7 @@ const MenumenuItem = ({ menuItem }) => {
           </View>
 
           <Text style={{ fontSize: 16, color: 'gray', marginTop: 6 }}>
-            {menuItem.adress}
+            {menuItem.address}
           </Text>
 
           <View
@@ -128,6 +132,6 @@ const MenumenuItem = ({ menuItem }) => {
   );
 };
 
-export default MenumenuItem;
+export default MenuItem;
 
 const styles = StyleSheet.create({});

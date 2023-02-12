@@ -15,7 +15,6 @@ import QuickFood from '../components/QuickFood';
 import hotels from '../data/hotels';
 import { Ionicons } from '@expo/vector-icons';
 import MenuItem from '../components/MenuItem';
-import LoadingScreen from './LoadingScreen';
 
 const HomeScreen = () => {
   const hotelsData = hotels;
@@ -96,10 +95,10 @@ const HomeScreen = () => {
             <Text>Sort By Price</Text>
           </Pressable>
         </View>
-        {hotelsData.map((item, index) => (
-          <MenuItem key={index} menuItem={item} />
-        ))}
-        <LoadingScreen />
+        {hotelsData &&
+          hotelsData.map((item, index) => (
+            <MenuItem key={index} menuItem={item} />
+          ))}
       </ScrollView>
     </SafeAreaView>
   );
