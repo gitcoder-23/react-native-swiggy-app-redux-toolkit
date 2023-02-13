@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import React, { useEffect } from 'react';
 import LottieView from 'lottie-react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const LoadingScreen = (props) => {
+const LoadingScreen = ({ cartData }) => {
   const navigation = useNavigation();
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //         navigation.replace("Order")
-  //     },2000)
-  // },[])
+  const route = useRoute();
+  console.log('@@LoadingScreen->', route?.params?.cartData);
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('Order', { cartData: route?.params?.cartData });
+    }, 2000);
+  }, []);
   return (
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
       <LottieView

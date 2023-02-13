@@ -437,11 +437,13 @@ const CartScreen = () => {
 
           <Pressable
             onPress={() => {
-              navigation.navigate('Loading');
+              navigation.navigate('Loading', {
+                cartData: cart,
+              });
               dispatch(cleanCart());
-              setTimeout(() => {
-                navigation.navigate('Home');
-              }, 3000);
+              // setTimeout(() => {
+              //   navigation.navigate('Home');
+              // }, 3000);
             }}
             style={{
               backgroundColor: '#00A877',

@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import MenuComponent from './MenuComponent';
 
 const FoodItem = ({ item, indesId, cartData }) => {
-  console.log('foodItem-cartData-->', cartData);
+  // console.log('foodItem-cartData-->', cartData);
 
   const foodItemData = [item];
   const [selected, setSelected] = useState(['Recommended']);

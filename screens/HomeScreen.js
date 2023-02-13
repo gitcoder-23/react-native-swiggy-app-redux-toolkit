@@ -24,7 +24,7 @@ const HomeScreen = () => {
 
   const cart = useSelector((state) => state.cart.cart);
 
-  console.log('HomeScreen-cartData-->', cart);
+  // console.log('HomeScreen-cartData-->', cart);
 
   useEffect(() => {
     dispatch(getInCart());

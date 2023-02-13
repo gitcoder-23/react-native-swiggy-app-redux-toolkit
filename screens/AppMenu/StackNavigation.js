@@ -6,6 +6,7 @@ import HomeScreen from '../HomeScreen';
 import LoadingScreen from '../LoadingScreen';
 import MenuScreen from '../MenuScreen';
 import CartScreen from '../CartScreen';
+import OrderScreen from '../OrderScreen';
 
 const StackNavigaton = () => {
   const Stack = createNativeStackNavigator();
@@ -30,6 +31,11 @@ const StackNavigaton = () => {
         <Stack.Screen
           name="Cart"
           component={CartScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Order"
+          component={OrderScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
