@@ -3,8 +3,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import MenuComponent from './MenuComponent';
 
-const FoodItem = ({ item, indesId }) => {
-  // console.log('foodItem-->', item);
+const FoodItem = ({ item, indesId, cartData }) => {
+  console.log('foodItem-cartData-->', cartData);
 
   const foodItemData = [item];
   const [selected, setSelected] = useState(['Recommended']);

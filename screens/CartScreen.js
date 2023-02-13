@@ -5,6 +5,7 @@ import {
   ScrollView,
   Pressable,
   Alert,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
@@ -372,15 +373,45 @@ const CartScreen = () => {
             </View>
           </>
         ) : (
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          <SafeAreaView
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              alignContent: 'space-between',
+              marginTop: 10,
+              height: 200,
+            }}
           >
             <Text
               style={{ textAlign: 'center', fontSize: 16, fontWeight: '600' }}
             >
               Your Cart is Empty!
             </Text>
-          </View>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('Home');
+              }}
+              style={{
+                backgroundColor: '#00A877',
+                padding: 14,
+                width: 200,
+                borderRadius: 6,
+                marginTop: 10,
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                Go Home
+              </Text>
+            </Pressable>
+          </SafeAreaView>
         )}
       </ScrollView>
 

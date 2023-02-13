@@ -223,7 +223,7 @@ const MenuScreen = ({ route }) => {
 
         {hotelMenus &&
           hotelMenus?.map((item, index) => (
-            <FoodItem item={item} indesId={index} />
+            <FoodItem item={item} indesId={index} cartData={cart} />
           ))}
       </ScrollView>
       {/* Menu Start With Modal */}

@@ -16,7 +16,10 @@ const MenuComponent = ({ food }) => {
   const cart = useSelector((state) => state.cart.cart);
   const [additems, setAddItems] = useState(0);
   const [selected, setSelected] = useState(false);
-  console.log('additems@@->', additems);
+  const [cartQData, setCartQData] = useState(
+    cart && cart.map((cData) => cData.quantity)
+  );
+  // console.log('additems@@->', additems);
   // console.log('MenuComponent-cartData@@->', cart);
   useEffect(() => {
     dispatch(getInCart());
@@ -109,8 +112,8 @@ const MenuComponent = ({ food }) => {
                     paddingHorizontal: 6,
                   }}
                 >
-                  {/* {additems} */}
-                  {cart && cart.map((cData) => cData.quantity)}
+                  {additems}
+                  {/* {cart && cart.map((cData) => cData.id && cData.quantity)} */}
                 </Text>
               </Pressable>
 
