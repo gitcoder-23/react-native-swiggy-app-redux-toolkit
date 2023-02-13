@@ -439,6 +439,9 @@ const CartScreen = () => {
             onPress={() => {
               navigation.navigate('Loading');
               dispatch(cleanCart());
+              setTimeout(() => {
+                navigation.navigate('Home');
+              }, 3000);
             }}
             style={{
               backgroundColor: '#00A877',
